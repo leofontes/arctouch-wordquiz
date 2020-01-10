@@ -1,5 +1,5 @@
 //
-//  Keyword.swift
+//  SyncService.swift
 //  wordQuiz
 //
 //  Created by Leonardo Thives da Luz Fontes on 1/10/20.
@@ -8,6 +8,7 @@
 
 import Foundation
 
-struct Keyword {
-    let word: String
+class SyncService {
+    static let BASE_URL = "https://codechallenge.arctouch.com"
 }
+s
