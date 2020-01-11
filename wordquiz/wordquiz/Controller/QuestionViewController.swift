@@ -16,6 +16,9 @@ class QuestionViewController: UIViewController {
     @IBOutlet weak var timeCountdownLabel: UILabel!
     
     var viewModel: QuizQuestionViewModel!
+    var countdownTime: Int = TimeUtil.QUIZ_LENGTH_TIME
+    var timer: Timer = Timer()
+    var quizRunning = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,8 +30,25 @@ class QuestionViewController: UIViewController {
         viewModel = QuizQuestionViewModel(questionNumber: 1, delegate: self)
     }
 
-    @IBAction func onStartButtonPress(_ sender: Any) {
+    @IBAction func onStartButtonPress(_ sender: UIButton) {
+        timer.invalidate()
+        quizRunning = true
+        //TODO unblock textfield
+        sender.setTitle("Reset", for: .normal)
+        countdownTime = TimeUtil.QUIZ_LENGTH_TIME
+        viewModel.userAnswers.removeAll()
         
+        DispatchQueue.main.async {
+            self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { closureTimer in
+                if self.countdownTime > 0 {
+                    self.timeCountdownLabel.text = TimeUtil.formatCountdownTime(timeInSecs: self.countdownTime)
+                    self.countdownTime -= 1
+                } else {
+                    self.timer.invalidate()
+                    self.quizRunning = false
+                }
+            }
+        }
     }
 }
 
@@ -78,7 +98,18 @@ extension QuestionViewController : UITextFieldDelegate {
     func handleSubmit(answer: String) {
         answerTextField.text = ""
         if viewModel.checkAnswer(answer) {
+            questionCountLabel.text = viewModel.getQuestionCount()
             answerTableView.reloadData()
+        } else {
+            answerTextField.shake()
         }
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if quizRunning {
+            return true
+        }
+        //TODO display alert
+        return false
     }
 }

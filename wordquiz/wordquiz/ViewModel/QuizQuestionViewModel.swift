@@ -50,16 +50,17 @@ class QuizQuestionViewModel {
         guard let fetchedQuestion = question else {
             return ""
         }
-        return "\(userAnswers.count)/\(fetchedQuestion.answer.count)"
+        return "\(StringUtil.formatNumberLeftZero(userAnswers.count))/\(StringUtil.formatNumberLeftZero(fetchedQuestion.answer.count))"
     }
     
     func checkAnswer(_ answer: String) -> Bool {
         guard let fetchedQuestion = question else {
             return false
         }
+        let lowercaseAnswer = answer.lowercased()
         
-        if fetchedQuestion.answer.contains(answer) && !userAnswers.contains(answer) {
-            userAnswers.append(answer)
+        if fetchedQuestion.answer.contains(lowercaseAnswer) && !userAnswers.contains(lowercaseAnswer.capitalized) {
+            userAnswers.append(answer.capitalized)
             return true
         }
         return false
