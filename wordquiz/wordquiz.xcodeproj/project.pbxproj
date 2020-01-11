@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3DC050CE23CA40C90085165E /* QuizQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC050CD23CA40C90085165E /* QuizQuestionViewModel.swift */; };
+		3DC050D023CA42C00085165E /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC050CF23CA42C00085165E /* QuestionViewController.swift */; };
 		B309AFCB23C8DA30008EEDE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFCA23C8DA30008EEDE8 /* AppDelegate.swift */; };
 		B309AFCD23C8DA30008EEDE8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFCC23C8DA30008EEDE8 /* SceneDelegate.swift */; };
-		B309AFCF23C8DA30008EEDE8 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFCE23C8DA30008EEDE8 /* HomeViewController.swift */; };
 		B309AFD223C8DA30008EEDE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B309AFD023C8DA30008EEDE8 /* Main.storyboard */; };
 		B309AFD423C8DA31008EEDE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B309AFD323C8DA31008EEDE8 /* Assets.xcassets */; };
 		B309AFD723C8DA31008EEDE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B309AFD523C8DA31008EEDE8 /* LaunchScreen.storyboard */; };
@@ -31,10 +32,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3DC050CD23CA40C90085165E /* QuizQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuizQuestionViewModel.swift; path = wordquiz/ViewModel/QuizQuestionViewModel.swift; sourceTree = SOURCE_ROOT; };
+		3DC050CF23CA42C00085165E /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionViewController.swift; path = wordquiz/Controller/QuestionViewController.swift; sourceTree = SOURCE_ROOT; };
 		B309AFC723C8DA30008EEDE8 /* Word Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B309AFCA23C8DA30008EEDE8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B309AFCC23C8DA30008EEDE8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B309AFCE23C8DA30008EEDE8 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		B309AFD123C8DA30008EEDE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B309AFD323C8DA31008EEDE8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B309AFD623C8DA31008EEDE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -66,6 +68,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3DC050CC23CA40A10085165E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				3DC050CD23CA40C90085165E /* QuizQuestionViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		B309AFBE23C8DA30008EEDE8 = {
 			isa = PBXGroup;
 			children = (
@@ -92,7 +102,7 @@
 				B309AFF223C8E4FC008EEDE8 /* Storyboards */,
 				B309AFF323C8E655008EEDE8 /* Sync */,
 				B309AFED23C8DACA008EEDE8 /* View */,
-				B309AFEE23C8DAD6008EEDE8 /* ViewModel */,
+				3DC050CC23CA40A10085165E /* ViewModel */,
 				B309AFCA23C8DA30008EEDE8 /* AppDelegate.swift */,
 				B309AFCC23C8DA30008EEDE8 /* SceneDelegate.swift */,
 				B309AFD323C8DA31008EEDE8 /* Assets.xcassets */,
@@ -126,17 +136,10 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		B309AFEE23C8DAD6008EEDE8 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		B309AFF123C8E327008EEDE8 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				B309AFCE23C8DA30008EEDE8 /* HomeViewController.swift */,
+				3DC050CF23CA42C00085165E /* QuestionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -224,7 +227,7 @@
 					};
 				};
 			};
-			buildConfigurationList = B309AFC223C8DA30008EEDE8 /* Build configuration list for PBXProject "wordQuiz" */;
+			buildConfigurationList = B309AFC223C8DA30008EEDE8 /* Build configuration list for PBXProject "wordquiz" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -268,12 +271,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B309AFCF23C8DA30008EEDE8 /* HomeViewController.swift in Sources */,
 				B309AFF623C8ED64008EEDE8 /* UIButtonExt.swift in Sources */,
 				B309AFFA23C90B2A008EEDE8 /* SyncService.swift in Sources */,
+				3DC050CE23CA40C90085165E /* QuizQuestionViewModel.swift in Sources */,
 				B309AFF823C9030C008EEDE8 /* Question.swift in Sources */,
 				B309AFCB23C8DA30008EEDE8 /* AppDelegate.swift in Sources */,
 				B309AFFC23C94016008EEDE8 /* QuestionSyncService.swift in Sources */,
+				3DC050D023CA42C00085165E /* QuestionViewController.swift in Sources */,
 				B309AFCD23C8DA30008EEDE8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -513,7 +517,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		B309AFC223C8DA30008EEDE8 /* Build configuration list for PBXProject "wordQuiz" */ = {
+		B309AFC223C8DA30008EEDE8 /* Build configuration list for PBXProject "wordquiz" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				B309AFE423C8DA32008EEDE8 /* Debug */,

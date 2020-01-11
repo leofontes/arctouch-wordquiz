@@ -10,5 +10,5 @@ import Foundation
 
 struct Question: Decodable {
     let question: String
-    let answers: [String]
+    let answer: [String]
 }
