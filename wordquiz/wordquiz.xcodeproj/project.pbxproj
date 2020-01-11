@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3D5C0D5823CA4C8C00D5709F /* AnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D5C0D5723CA4C8C00D5709F /* AnswerTableViewCell.swift */; };
 		3DC050CE23CA40C90085165E /* QuizQuestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC050CD23CA40C90085165E /* QuizQuestionViewModel.swift */; };
 		3DC050D023CA42C00085165E /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC050CF23CA42C00085165E /* QuestionViewController.swift */; };
 		B309AFCB23C8DA30008EEDE8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFCA23C8DA30008EEDE8 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3D5C0D5723CA4C8C00D5709F /* AnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AnswerTableViewCell.swift; path = wordquiz/View/Cells/AnswerTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		3DC050CD23CA40C90085165E /* QuizQuestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuizQuestionViewModel.swift; path = wordquiz/ViewModel/QuizQuestionViewModel.swift; sourceTree = SOURCE_ROOT; };
 		3DC050CF23CA42C00085165E /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = QuestionViewController.swift; path = wordquiz/Controller/QuestionViewController.swift; sourceTree = SOURCE_ROOT; };
 		B309AFC723C8DA30008EEDE8 /* Word Quiz.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Word Quiz.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -68,6 +70,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3D5C0D5623CA4BC400D5709F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				3D5C0D5723CA4C8C00D5709F /* AnswerTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		3DC050CC23CA40A10085165E /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -131,6 +141,7 @@
 		B309AFED23C8DACA008EEDE8 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				3D5C0D5623CA4BC400D5709F /* Cells */,
 				B309AFF423C8ED21008EEDE8 /* Extensions */,
 			);
 			path = View;
@@ -275,6 +286,7 @@
 				B309AFFA23C90B2A008EEDE8 /* SyncService.swift in Sources */,
 				3DC050CE23CA40C90085165E /* QuizQuestionViewModel.swift in Sources */,
 				B309AFF823C9030C008EEDE8 /* Question.swift in Sources */,
+				3D5C0D5823CA4C8C00D5709F /* AnswerTableViewCell.swift in Sources */,
 				B309AFCB23C8DA30008EEDE8 /* AppDelegate.swift in Sources */,
 				B309AFFC23C94016008EEDE8 /* QuestionSyncService.swift in Sources */,
 				3DC050D023CA42C00085165E /* QuestionViewController.swift in Sources */,

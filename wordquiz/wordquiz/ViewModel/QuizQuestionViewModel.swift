@@ -18,31 +18,51 @@ class QuizQuestionViewModel {
         self.questionNumber = questionNumber
         self.delegate = delegate
         
-        fetchQuestion(questionNumber: questionNumber)
+        fetchQuestion()
     }
     
-    func fetchQuestion(questionNumber: Int) {
+    func fetchQuestion() {
         if let url = URL(string: "\(SyncService.BASE_URL)/quiz/\(questionNumber)") {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, taskError) in
                 if let safeTaskError = taskError {
-                    self.delegate.didFailWithError(error: safeTaskError)
+                    self.delegate.didFail(error: safeTaskError)
                     return
                 }
                 if let safeData = data {
                     let decoder = JSONDecoder()
                     do {
                         let question = try decoder.decode(Question.self, from: safeData)
+                        self.question = question
                         self.delegate.didFetchQuestion(question: question)
                     } catch {
-                        self.delegate.didFailWithError(error: error)
+                        self.delegate.didFail(error: error)
                     }
                 }
             }
             task.resume()
         } else {
-            delegate.didFail()
+            delegate.didFail(error: nil)
         }
+    }
+    
+    func getQuestionCount() -> String {
+        guard let fetchedQuestion = question else {
+            return ""
+        }
+        return "\(userAnswers.count)/\(fetchedQuestion.answer.count)"
+    }
+    
+    func checkAnswer(_ answer: String) -> Bool {
+        guard let fetchedQuestion = question else {
+            return false
+        }
+        
+        if fetchedQuestion.answer.contains(answer) && !userAnswers.contains(answer) {
+            userAnswers.append(answer)
+            return true
+        }
+        return false
     }
 }
 
@@ -57,7 +77,7 @@ class QuizQuestionViewModel {
 //}
 
 protocol QuizQuestionVMFetchDelegate {
+    func didStartFetching()
     func didFetchQuestion(question: Question)
-    func didFailWithError(error: Error)
-    func didFail()
+    func didFail(error: Error?)
 }
