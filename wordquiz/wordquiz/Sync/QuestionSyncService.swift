@@ -1,5 +1,5 @@
 //
-//  SyncService.swift
+//  QuestionSyncService.swift
 //  wordQuiz
 //
 //  Created by Leonardo Thives da Luz Fontes on 1/10/20.
@@ -8,7 +8,9 @@
 
 import Foundation
 
-class SyncService {
-    static let BASE_URL = "https://codechallenge.arctouch.com"
+class QuestionSyncService {
+    
+    func fetch(): Question {
+        
+    }
 }
-
