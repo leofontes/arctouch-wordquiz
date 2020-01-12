@@ -24,6 +24,8 @@
 		B309AFFA23C90B2A008EEDE8 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFF923C90B2A008EEDE8 /* SyncService.swift */; };
 		B309AFFC23C94016008EEDE8 /* QuestionSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFFB23C94016008EEDE8 /* QuestionSyncService.swift */; };
 		B31BFA7323CB856B00C5000D /* LoadingQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BFA7223CB856B00C5000D /* LoadingQuestionViewController.swift */; };
+		B31BFA7623CBA5C200C5000D /* TimeUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BFA7523CBA5C200C5000D /* TimeUtilTest.swift */; };
+		B31BFA7823CBA82C00C5000D /* StringUtilTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BFA7723CBA82C00C5000D /* StringUtilTest.swift */; };
 		B394AB3E23CB49DC00DF60C2 /* QuizStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394AB3D23CB49DC00DF60C2 /* QuizStatus.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +61,8 @@
 		B309AFF923C90B2A008EEDE8 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		B309AFFB23C94016008EEDE8 /* QuestionSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSyncService.swift; sourceTree = "<group>"; };
 		B31BFA7223CB856B00C5000D /* LoadingQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingQuestionViewController.swift; sourceTree = "<group>"; };
+		B31BFA7523CBA5C200C5000D /* TimeUtilTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeUtilTest.swift; sourceTree = "<group>"; };
+		B31BFA7723CBA82C00C5000D /* StringUtilTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUtilTest.swift; sourceTree = "<group>"; };
 		B394AB3D23CB49DC00DF60C2 /* QuizStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -144,6 +148,7 @@
 		B309AFE023C8DA32008EEDE8 /* wordQuizTests */ = {
 			isa = PBXGroup;
 			children = (
+				B31BFA7423CBA51B00C5000D /* Util */,
 				B309AFE123C8DA32008EEDE8 /* wordQuizTests.swift */,
 				B309AFE323C8DA32008EEDE8 /* Info.plist */,
 			);
@@ -202,6 +207,15 @@
 				3D5C0D5E23CA741A00D5709F /* UIViewExt.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		B31BFA7423CBA51B00C5000D /* Util */ = {
+			isa = PBXGroup;
+			children = (
+				B31BFA7523CBA5C200C5000D /* TimeUtilTest.swift */,
+				B31BFA7723CBA82C00C5000D /* StringUtilTest.swift */,
+			);
+			path = Util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -326,7 +340,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B31BFA7623CBA5C200C5000D /* TimeUtilTest.swift in Sources */,
 				B309AFE223C8DA32008EEDE8 /* wordQuizTests.swift in Sources */,
+				B31BFA7823CBA82C00C5000D /* StringUtilTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,7 +544,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordQuiz.app/wordQuiz";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Word Quiz.app/Word Quiz";
 			};
 			name = Debug;
 		};
@@ -550,7 +566,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/wordQuiz.app/wordQuiz";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Word Quiz.app/Word Quiz";
 			};
 			name = Release;
 		};
