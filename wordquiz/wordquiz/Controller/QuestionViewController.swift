@@ -30,13 +30,25 @@ class QuestionViewController: UIViewController {
         viewModel = QuizQuestionViewModel(questionNumber: 1, delegate: self)
     }
 
-    @IBAction func onStartButtonPress(_ sender: UIButton) {
+    func presentQuizEndedAlert(success: Bool) {
+        let title = success ? "Congratulations" : "Time finished"
+        let message = success ? "Good job! You found all the answers on time. Keep up with the great work." : "Sorry, time is up! You got \(viewModel.userAnswers.count) out of \(viewModel.question!.answer.count) answers."
+        let buttonText = success ? "Play again" : "Try again"
+
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: buttonText, style: .default, handler: { (alertAction) in
+            self.restartQuiz()
+        }))
+    
+        self.present(alert, animated: true)
+    }
+    
+    func restartQuiz() {
         timer.invalidate()
         quizRunning = true
-        //TODO unblock textfield
-        sender.setTitle("Reset", for: .normal)
         countdownTime = TimeUtil.QUIZ_LENGTH_TIME
         viewModel.userAnswers.removeAll()
+        answerTableView.reloadData()
         
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { closureTimer in
@@ -46,9 +58,15 @@ class QuestionViewController: UIViewController {
                 } else {
                     self.timer.invalidate()
                     self.quizRunning = false
+                    self.presentQuizEndedAlert(success: false)
                 }
             }
         }
+    }
+    
+    @IBAction func onStartButtonPress(_ sender: UIButton) {
+        sender.setTitle("Reset", for: .normal)
+        restartQuiz()
     }
 }
 
@@ -59,11 +77,14 @@ extension QuestionViewController : QuizQuestionVMFetchDelegate {
             self.questionLabel.text = question.question
             self.questionCountLabel.text = self.viewModel.getQuestionCount()
         }
-    
     }
     
     func didFail(error: Error?) {
-        //TODO inform user of failure
+        let alert = UIAlertController(title: "Oops", message: "Something went wrong.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Reload", style: .default, handler: { _ in
+            self.viewModel = QuizQuestionViewModel(questionNumber: 1, delegate: self)
+        }))
+        self.present(alert, animated: true)
     }
     
     func didStartFetching() {
@@ -100,6 +121,12 @@ extension QuestionViewController : UITextFieldDelegate {
         if viewModel.checkAnswer(answer) {
             questionCountLabel.text = viewModel.getQuestionCount()
             answerTableView.reloadData()
+            
+            if viewModel.userAnswers.count == viewModel.question!.answer.count {
+                timer.invalidate()
+                self.quizRunning = false
+                presentQuizEndedAlert(success: true)
+            }
         } else {
             answerTextField.shake()
         }
@@ -109,7 +136,12 @@ extension QuestionViewController : UITextFieldDelegate {
         if quizRunning {
             return true
         }
-        //TODO display alert
+        let alert = UIAlertController(title: "Not so fast!", message: "You need to start the quiz to begin answering", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Start quiz", style: .default, handler: { (alert) in
+            self.restartQuiz()
+        }))
+        self.present(alert, animated: true)
         return false
     }
 }
