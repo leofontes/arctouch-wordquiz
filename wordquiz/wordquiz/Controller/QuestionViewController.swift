@@ -26,10 +26,18 @@ class QuestionViewController: UIViewController {
         answerTextField.delegate = self
         answerTableView.dataSource = self
         answerTableView.delegate = self
+        
+        addTextFieldPadding()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         viewModel = QuizQuestionViewModel(questionNumber: 1, delegate: self)
+    }
+    
+    func addTextFieldPadding() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 8, height: answerTextField.frame.height))
+        answerTextField.leftView = paddingView
+        answerTextField.leftViewMode = .always
     }
 
     func presentQuizEndedAlert(success: Bool) {
