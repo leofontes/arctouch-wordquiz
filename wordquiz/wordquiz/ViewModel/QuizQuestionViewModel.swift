@@ -22,6 +22,7 @@ class QuizQuestionViewModel {
     }
     
     func fetchQuestion() {
+        delegate.didStartFetching()
         if let url = URL(string: "\(SyncService.BASE_URL)/quiz/\(questionNumber)") {
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: url) { (data, response, taskError) in

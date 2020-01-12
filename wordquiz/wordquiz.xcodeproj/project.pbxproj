@@ -23,6 +23,7 @@
 		B309AFF823C9030C008EEDE8 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFF723C9030C008EEDE8 /* Question.swift */; };
 		B309AFFA23C90B2A008EEDE8 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFF923C90B2A008EEDE8 /* SyncService.swift */; };
 		B309AFFC23C94016008EEDE8 /* QuestionSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFFB23C94016008EEDE8 /* QuestionSyncService.swift */; };
+		B31BFA7323CB856B00C5000D /* LoadingQuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B31BFA7223CB856B00C5000D /* LoadingQuestionViewController.swift */; };
 		B394AB3E23CB49DC00DF60C2 /* QuizStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = B394AB3D23CB49DC00DF60C2 /* QuizStatus.swift */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 		B309AFF723C9030C008EEDE8 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
 		B309AFF923C90B2A008EEDE8 /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		B309AFFB23C94016008EEDE8 /* QuestionSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionSyncService.swift; sourceTree = "<group>"; };
+		B31BFA7223CB856B00C5000D /* LoadingQuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingQuestionViewController.swift; sourceTree = "<group>"; };
 		B394AB3D23CB49DC00DF60C2 /* QuizStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizStatus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -170,6 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				3DC050CF23CA42C00085165E /* QuestionViewController.swift */,
+				B31BFA7223CB856B00C5000D /* LoadingQuestionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -313,6 +316,7 @@
 				B309AFFC23C94016008EEDE8 /* QuestionSyncService.swift in Sources */,
 				3DC050D023CA42C00085165E /* QuestionViewController.swift in Sources */,
 				3D5C0D5B23CA5F2100D5709F /* TimeUtil.swift in Sources */,
+				B31BFA7323CB856B00C5000D /* LoadingQuestionViewController.swift in Sources */,
 				B394AB3E23CB49DC00DF60C2 /* QuizStatus.swift in Sources */,
 				B309AFCD23C8DA30008EEDE8 /* SceneDelegate.swift in Sources */,
 			);

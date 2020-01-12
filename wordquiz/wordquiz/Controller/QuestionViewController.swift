@@ -26,7 +26,9 @@ class QuestionViewController: UIViewController {
         answerTextField.delegate = self
         answerTableView.dataSource = self
         answerTableView.delegate = self
-        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         viewModel = QuizQuestionViewModel(questionNumber: 1, delegate: self)
     }
 
@@ -48,6 +50,7 @@ class QuestionViewController: UIViewController {
         self.quizStatus = QuizStatus.RUNNING
         countdownTime = TimeUtil.QUIZ_LENGTH_TIME
         viewModel.userAnswers.removeAll()
+        self.questionCountLabel.text = self.viewModel.getQuestionCount()
         answerTableView.reloadData()
         
         DispatchQueue.main.async {
@@ -74,6 +77,7 @@ extension QuestionViewController : QuizQuestionVMFetchDelegate {
     func didFetchQuestion(question: Question) {
         DispatchQueue.main.async {
             //TODO dismiss overlay
+            self.dismiss(animated: true, completion: nil)
             self.questionLabel.text = question.question
             self.questionCountLabel.text = self.viewModel.getQuestionCount()
             self.quizStatus = QuizStatus.NOT_STARTED
@@ -81,6 +85,7 @@ extension QuestionViewController : QuizQuestionVMFetchDelegate {
     }
     
     func didFail(error: Error?) {
+        self.dismiss(animated: true, completion: nil)
         let alert = UIAlertController(title: "Oops", message: "Something went wrong.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Reload", style: .default, handler: { _ in
             self.viewModel = QuizQuestionViewModel(questionNumber: 1, delegate: self)
@@ -89,13 +94,16 @@ extension QuestionViewController : QuizQuestionVMFetchDelegate {
     }
     
     func didStartFetching() {
-        //TODO handle overlay
+        performSegue(withIdentifier: "loadingSegue", sender: nil)
     }
 }
 
 extension QuestionViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.userAnswers.count
+        if let vm = viewModel {
+            return vm.userAnswers.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -137,9 +145,6 @@ extension QuestionViewController : UITextFieldDelegate {
         if quizStatus == QuizStatus.NOT_STARTED {
             let alert = UIAlertController(title: "Not so fast!", message: "You need to start the quiz to begin answering", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-            alert.addAction(UIAlertAction(title: "Start quiz", style: .default, handler: { (alert) in
-                self.restartQuiz()
-            }))
             self.present(alert, animated: true)
             return false
         }
