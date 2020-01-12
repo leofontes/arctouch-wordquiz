@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import wordQuiz
+@testable import Word_Quiz
 
 class wordQuizTests: XCTestCase {
 

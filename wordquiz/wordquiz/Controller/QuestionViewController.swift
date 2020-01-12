@@ -18,7 +18,7 @@ class QuestionViewController: UIViewController {
     var viewModel: QuizQuestionViewModel!
     var countdownTime: Int = TimeUtil.QUIZ_LENGTH_TIME
     var timer: Timer = Timer()
-    var quizRunning = false
+    var quizStatus: QuizStatus = QuizStatus.LOADING
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,19 +45,19 @@ class QuestionViewController: UIViewController {
     
     func restartQuiz() {
         timer.invalidate()
-        quizRunning = true
+        self.quizStatus = QuizStatus.RUNNING
         countdownTime = TimeUtil.QUIZ_LENGTH_TIME
         viewModel.userAnswers.removeAll()
         answerTableView.reloadData()
         
         DispatchQueue.main.async {
             self.timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { closureTimer in
+                self.timeCountdownLabel.text = TimeUtil.formatCountdownTime(timeInSecs: self.countdownTime)
                 if self.countdownTime > 0 {
-                    self.timeCountdownLabel.text = TimeUtil.formatCountdownTime(timeInSecs: self.countdownTime)
                     self.countdownTime -= 1
                 } else {
                     self.timer.invalidate()
-                    self.quizRunning = false
+                    self.quizStatus = QuizStatus.FINISHED
                     self.presentQuizEndedAlert(success: false)
                 }
             }
@@ -76,6 +76,7 @@ extension QuestionViewController : QuizQuestionVMFetchDelegate {
             //TODO dismiss overlay
             self.questionLabel.text = question.question
             self.questionCountLabel.text = self.viewModel.getQuestionCount()
+            self.quizStatus = QuizStatus.NOT_STARTED
         }
     }
     
@@ -124,7 +125,7 @@ extension QuestionViewController : UITextFieldDelegate {
             
             if viewModel.userAnswers.count == viewModel.question!.answer.count {
                 timer.invalidate()
-                self.quizRunning = false
+                self.quizStatus = QuizStatus.FINISHED
                 presentQuizEndedAlert(success: true)
             }
         } else {
@@ -133,15 +134,15 @@ extension QuestionViewController : UITextFieldDelegate {
     }
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if quizRunning {
-            return true
+        if quizStatus == QuizStatus.NOT_STARTED {
+            let alert = UIAlertController(title: "Not so fast!", message: "You need to start the quiz to begin answering", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            alert.addAction(UIAlertAction(title: "Start quiz", style: .default, handler: { (alert) in
+                self.restartQuiz()
+            }))
+            self.present(alert, animated: true)
+            return false
         }
-        let alert = UIAlertController(title: "Not so fast!", message: "You need to start the quiz to begin answering", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Start quiz", style: .default, handler: { (alert) in
-            self.restartQuiz()
-        }))
-        self.present(alert, animated: true)
-        return false
+        return true
     }
 }
