@@ -31,7 +31,9 @@ class QuestionViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        viewModel = QuizQuestionViewModel(questionNumber: 1, delegate: self)
+        viewModel = QuizQuestionViewModel(questionNumber: 1)
+        viewModel.delegate = self
+        viewModel.fetchQuestion()
     }
     
     func addTextFieldPadding() {
@@ -96,7 +98,9 @@ extension QuestionViewController : QuizQuestionVMFetchDelegate {
         self.dismiss(animated: true, completion: nil)
         let alert = UIAlertController(title: "Oops", message: "Something went wrong.", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Reload", style: .default, handler: { _ in
-            self.viewModel = QuizQuestionViewModel(questionNumber: 1, delegate: self)
+            self.viewModel = QuizQuestionViewModel(questionNumber: 1)
+            self.viewModel.delegate = self
+            self.viewModel.fetchQuestion()
         }))
         self.present(alert, animated: true)
     }

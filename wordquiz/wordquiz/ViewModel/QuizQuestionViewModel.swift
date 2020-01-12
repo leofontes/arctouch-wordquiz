@@ -10,40 +10,39 @@ import Foundation
 
 class QuizQuestionViewModel {
     let questionNumber: Int
-    let delegate: QuizQuestionVMFetchDelegate
+    var delegate: QuizQuestionVMFetchDelegate?
     var question: Question?
     var userAnswers = [String]()
     
-    init(questionNumber: Int, delegate: QuizQuestionVMFetchDelegate) {
+    init(questionNumber: Int) {
         self.questionNumber = questionNumber
-        self.delegate = delegate
-        
-        fetchQuestion()
     }
     
     func fetchQuestion() {
-        delegate.didStartFetching()
-        if let url = URL(string: "\(SyncService.BASE_URL)/quiz/\(questionNumber)") {
-            let session = URLSession(configuration: .default)
-            let task = session.dataTask(with: url) { (data, response, taskError) in
-                if let safeTaskError = taskError {
-                    self.delegate.didFail(error: safeTaskError)
-                    return
-                }
-                if let safeData = data {
-                    let decoder = JSONDecoder()
-                    do {
-                        let question = try decoder.decode(Question.self, from: safeData)
-                        self.question = question
-                        self.delegate.didFetchQuestion(question: question)
-                    } catch {
-                        self.delegate.didFail(error: error)
+        if let _delegate = delegate {
+            _delegate.didStartFetching()
+            if let url = URL(string: "\(SyncService.BASE_URL)/quiz/\(questionNumber)") {
+                let session = URLSession(configuration: .default)
+                let task = session.dataTask(with: url) { (data, response, taskError) in
+                    if let safeTaskError = taskError {
+                        _delegate.didFail(error: safeTaskError)
+                        return
+                    }
+                    if let safeData = data {
+                        let decoder = JSONDecoder()
+                        do {
+                            let question = try decoder.decode(Question.self, from: safeData)
+                            self.question = question
+                            _delegate.didFetchQuestion(question: question)
+                        } catch {
+                            _delegate.didFail(error: error)
+                        }
                     }
                 }
+                task.resume()
+            } else {
+                _delegate.didFail(error: nil)
             }
-            task.resume()
-        } else {
-            delegate.didFail(error: nil)
         }
     }
     
@@ -67,16 +66,6 @@ class QuizQuestionViewModel {
         return false
     }
 }
-
-//extension QuizQuestionViewModel : QuestionSyncDelegate {
-//    func didFetchQuestion(question: Question) {
-//        self.question = question
-//    }
-//
-//    func didFailWithError(error: Error) {
-//        //TODO handle error
-//    }
-//}
 
 protocol QuizQuestionVMFetchDelegate {
     func didStartFetching()
