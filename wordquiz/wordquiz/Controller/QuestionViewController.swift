@@ -29,6 +29,9 @@ class QuestionViewController: UIViewController {
         answerTableView.delegate = self
         
         addTextFieldPadding()
+        
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        self.view.addGestureRecognizer(tap)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -76,6 +79,10 @@ class QuestionViewController: UIViewController {
                 }
             }
         }
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func onStartButtonPress(_ sender: UIButton) {
