@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class QuestionViewController: UIViewController {
     @IBOutlet weak var questionLabel: UILabel!
@@ -108,6 +109,7 @@ extension QuestionViewController : QuizQuestionVMFetchDelegate {
     func didStartFetching() {
         performSegue(withIdentifier: "loadingSegue", sender: nil)
     }
+    
 }
 
 extension QuestionViewController : UITableViewDataSource, UITableViewDelegate {
