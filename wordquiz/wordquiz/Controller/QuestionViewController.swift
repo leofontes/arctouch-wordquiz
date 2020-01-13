@@ -94,7 +94,6 @@ class QuestionViewController: UIViewController {
 extension QuestionViewController : QuizQuestionVMFetchDelegate {
     func didFetchQuestion(question: Question) {
         DispatchQueue.main.async {
-            //TODO dismiss overlay
             self.dismiss(animated: true, completion: nil)
             self.questionLabel.text = question.question
             self.questionCountLabel.text = self.viewModel.getQuestionCount()
@@ -121,10 +120,10 @@ extension QuestionViewController : QuizQuestionVMFetchDelegate {
 
 extension QuestionViewController : UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let vm = viewModel {
-            return vm.userAnswers.count
+        guard let vm = viewModel else {
+            return 0
         }
-        return 0
+        return vm.userAnswers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

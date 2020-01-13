@@ -18,7 +18,6 @@
 		B309AFD223C8DA30008EEDE8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B309AFD023C8DA30008EEDE8 /* Main.storyboard */; };
 		B309AFD423C8DA31008EEDE8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B309AFD323C8DA31008EEDE8 /* Assets.xcassets */; };
 		B309AFD723C8DA31008EEDE8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B309AFD523C8DA31008EEDE8 /* LaunchScreen.storyboard */; };
-		B309AFE223C8DA32008EEDE8 /* wordQuizTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFE123C8DA32008EEDE8 /* wordQuizTests.swift */; };
 		B309AFF623C8ED64008EEDE8 /* UIButtonExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFF523C8ED64008EEDE8 /* UIButtonExt.swift */; };
 		B309AFF823C9030C008EEDE8 /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFF723C9030C008EEDE8 /* Question.swift */; };
 		B309AFFA23C90B2A008EEDE8 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B309AFF923C90B2A008EEDE8 /* SyncService.swift */; };
@@ -55,7 +54,6 @@
 		B309AFD623C8DA31008EEDE8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B309AFD823C8DA31008EEDE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B309AFDD23C8DA32008EEDE8 /* wordQuizTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = wordQuizTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B309AFE123C8DA32008EEDE8 /* wordQuizTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = wordQuizTests.swift; sourceTree = "<group>"; };
 		B309AFE323C8DA32008EEDE8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B309AFF523C8ED64008EEDE8 /* UIButtonExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIButtonExt.swift; sourceTree = "<group>"; };
 		B309AFF723C9030C008EEDE8 /* Question.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -152,7 +150,6 @@
 			children = (
 				B31BFA7423CBA51B00C5000D /* Util */,
 				B31BFA7D23CBDBDF00C5000D /* ViewModel */,
-				B309AFE123C8DA32008EEDE8 /* wordQuizTests.swift */,
 				B309AFE323C8DA32008EEDE8 /* Info.plist */,
 			);
 			path = wordQuizTests;
@@ -352,7 +349,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				B31BFA7623CBA5C200C5000D /* TimeUtilTest.swift in Sources */,
-				B309AFE223C8DA32008EEDE8 /* wordQuizTests.swift in Sources */,
 				B31BFA7823CBA82C00C5000D /* StringUtilTest.swift in Sources */,
 				B31BFA7F23CBDBF800C5000D /* QuizQuestionViewModelTest.swift in Sources */,
 			);
