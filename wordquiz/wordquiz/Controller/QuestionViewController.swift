@@ -49,7 +49,7 @@ class QuestionViewController: UIViewController {
     func presentQuizEndedAlert(success: Bool) {
         let title = success ? "Congratulations" : "Time finished"
         let message = success ? "Good job! You found all the answers on time. Keep up with the great work." : "Sorry, time is up! You got \(viewModel.userAnswers.count) out of \(viewModel.question!.answer.count) answers."
-        let buttonText = success ? "Play again" : "Try again"
+        let buttonText = success ? "Play Again" : "Try Again"
 
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: buttonText, style: .default, handler: { (alertAction) in
