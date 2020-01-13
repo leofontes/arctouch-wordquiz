@@ -136,18 +136,10 @@ extension QuestionViewController : UITableViewDataSource, UITableViewDelegate {
 }
 
 extension QuestionViewController : UITextFieldDelegate {
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        handleSubmit(answer: textField.text ?? "")
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        handleSubmit(answer: textField.text ?? "")
-    }
-    
-    func handleSubmit(answer: String) {
-        answerTextField.text = ""
-        if viewModel.checkAnswer(answer) {
+    func textFieldDidChangeSelection(_ textField: UITextField) {
+        let currentText = textField.text ?? ""
+        if viewModel.checkAnswer(currentText) {
+            answerTextField.text = ""
             questionCountLabel.text = viewModel.getQuestionCount()
             answerTableView.reloadData()
             
@@ -156,8 +148,6 @@ extension QuestionViewController : UITextFieldDelegate {
                 self.quizStatus = QuizStatus.FINISHED
                 presentQuizEndedAlert(success: true)
             }
-        } else {
-            answerTextField.shake()
         }
     }
     
